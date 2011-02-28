@@ -1,7 +1,7 @@
 *.class
 *.pyc
 *.pyo
-
+*.php
 */config/database.php
 */system/logs/log-*.php
 */system/cache/*
