@@ -5,3 +5,8 @@
 */system/logs/log-*.php
 */system/cache/*
 */system/cache/!index.html
+
+*\config\database.php
+*\system\logs\log-*.php
+*\system\cache\*
+*\system\cache\!index.html
