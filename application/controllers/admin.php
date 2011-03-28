@@ -24,4 +24,31 @@ class Admin extends CI_Controller {
 	function assign() {
 		$tempssign($name, $target, $template, $due_date);
 	}
+	
+	function students_assign() {
+		$this->load->view('students_assign');	
+	}
+	
+	function map_students_to_ta() {
+		if (($handle = fopen($_FILES['file']['tmp_name'], "r")) !== FALSE) {
+			$row = 0;
+			$this->db->truncate('relationship');
+			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+				// skip first row
+				if ($row == 0) {
+					$row++; 
+					continue;
+				}
+				if ($data[0] !='' && $data[1] !='') {
+					$data = array(
+					'student' => $data[0],
+					'ta' => $data[1]
+					);
+					
+					$this->db->insert('relationship', $data); 
+				}
+				$row++;
+			}
+		} 
+	}
 }
