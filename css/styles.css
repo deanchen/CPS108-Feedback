@@ -5,15 +5,90 @@ html, body {
 	font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 
+.rounded-box {
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, .35);
+	-o-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	background-color: white;
+}
+
+.content {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	margin-top: 1.5em;
+	padding: 1.3em;
+}
+
 label {
 	display: block;
 }
 
-h1 {
-	
+h2 {
+	text-decoration: underline;
+}
+
+h1, h2, h3 {
+	font-weight: bold;
+	margin-top: 0.6em;
+}
+
+a {
+	text-decoration: none;
+	color: #08C;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 #feedbacks, #assignments {
-	width: 300px;
+	width: 200px;
 	float: left;
+}
+
+#assignments {
+	border-left: #DDD 1px solid;
+	text-align: right;
+}
+
+#feedbacks {
+	border-right: #DDD 1px solid;
+	margin-right: -1px;
+}
+
+.overview {
+	width: 401px;
+	margin: 0px auto;
+}
+
+.due-date {
+	font-size: 0.85em;
+	line-height: 0.75em;
+}
+
+/* float clearing for IE6 */
+* html .clearfix{
+  height: 1%;
+  overflow: visible;
+}
+
+/* float clearing for IE7 */
+*+html .clearfix{
+  min-height: 1%;
+}
+
+/* float clearing for everyone else */
+.clearfix:after{
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
 }
