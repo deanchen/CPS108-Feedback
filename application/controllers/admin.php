@@ -22,7 +22,11 @@ class Admin extends CI_Controller {
 	}
 	
 	function assign() {
-		$tempssign($name, $target, $template, $due_date);
+		$name = $this->input->post('name');
+		$target = $this->input->post('target');
+		$template = $this->input->post('template');
+		$due_date = $this->input->post('due_date');
+		$this->forms_model->assign($name, $target, $template, $due_date);
 	}
 	
 	function students_assign() {
