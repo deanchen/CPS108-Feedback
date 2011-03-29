@@ -59,7 +59,7 @@
 </head>
 <body>
 	<div class="content rounded-box clearfix" style="width: 500px">
-	<div style="text-align: right; font-size: 0.7em; margin-right: -1em;"><a href="https://github.com/deanchen/CPS108-Feedback/blob/master/license.txt">Dean Chen &copy; 2011</a></div>
+	<div style="text-align: right; font-size: 0.8em; margin-right: -1em;"><a href="https://github.com/deanchen/CPS108-Feedback/blob/master/license.txt">Dean Chen &copy; 2011</a></div>
 	<?if (!isset($given_name)) $given_name = ''; ?>
 	<?="<h3 style='text-align: center; margin-bottom: 1em; margin-top: 0px'>$given_name ($netid)</h2>"?>
 	<div class="overview">
