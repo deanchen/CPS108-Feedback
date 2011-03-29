@@ -70,7 +70,8 @@ a:hover {
 
 .due-date {
 	font-size: 0.85em;
-	margin-top: 0.2em;
+	margin-bottom: 0.5em;
+	line-height: 1.2em;
 }
 
 /* float clearing for IE6 */
