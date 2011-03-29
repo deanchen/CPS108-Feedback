@@ -12,6 +12,9 @@ class Feedback extends CI_Controller {
 			if (isset($_SERVER['Shib-Session-ID'])) {
 				$email = explode('@', $_SERVER['eppn']);
 				$this->netid = $email[0];	
+			} else {
+				print "Please log in to shibboleth first";
+				exit();	
 			}		
 		}
 		$this->load->model('forms_model');
