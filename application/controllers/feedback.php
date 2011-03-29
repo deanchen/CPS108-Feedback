@@ -23,19 +23,11 @@ class Feedback extends CI_Controller {
 		$this->load->view('overview', $data);
 	}
 	
-	function fill_form($id)
-	{
-		$form = array();
-
-		$form[] = array(
-			'label' => 'What is your name?',
-			'type' => 'form_input',
-			'attributes' => array(
-				'name' => 'name',
-				'value' => 'Dean Chen',
-			),
-		);
-		
+	function fill_form($id) {
+		if ($this->forms_model->completed($id)) {
+			echo "You have already submitted this form";
+			return;
+		}
 		$data = array(
 			'id' => $id,	
 			'netid' => $this->netid,

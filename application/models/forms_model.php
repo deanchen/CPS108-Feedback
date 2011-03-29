@@ -55,6 +55,14 @@ class Forms_model extends CI_Model {
 		return $query->row()->data;
 	}
 	
+	function completed($form_id) {
+		if ($this->get_form($form_id)!='') {
+			return true;
+		} else {
+			return false;
+		}	
+	}
+	
 	function get_templates() {
 		$query = $this->db->get('form_templates');
 		$data = array();
