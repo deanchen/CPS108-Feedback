@@ -66,25 +66,48 @@ class Forms_model extends CI_Model {
 
 	}
 	
-	function assign($name, $target, $template, $due_date) {
-		$this->db->where('type', $target);
+	function assign($name, $type, $template, $due_date) {
+		$this->db->where('type', $type);
 		$query = $this->db->get('people');
+		$people = $query->result();
 		
-		foreach ($query->result() as $result) {
-			$netid = $result->net_id;
+		foreach ($people as $person) {
+			$netid = $person->net_id;
+			$targets = $this->getTargets($netid, $type);
 			
-			$assignment = array(
-				'name' => $name,
-				'data' => '',
-				'origin' => $netid,
-				'template' => $template,
-				'date_assigned' => '2011-03-28',
-				'date_due' => $due_date
-			);
+			foreach ($targets as $target) {
+				$assignment = array(
+					'id' => $this->randomString(),
+					'name' => $name,
+					'data' => '',
+					'origin' => $netid,
+					'target' => $target,
+					'template' => $template,
+					'date_assigned' => date('Y-m-d'),
+					'date_due' => $due_date
+				);
 			
-			$this->db->insert('assignments', $assignment);
-			print('assign successful');
+				$this->db->insert('assignments', $assignment);
+				print("Assigned to $netid feedback for $target<br />");
+			}
+			
 		}
+	}
+	
+	function getTargets($netid, $type) {
+		$this->db->where($type, $netid);
+		$query = $this->db->get('relationship');
+		$results = $query->result();
+		
+		$targets = array();
+		foreach ($results as $result) {
+			if ($type == 'student') {
+				$targets[] = ($result->ta);	
+			} elseif ($type == 'ta') {
+				$targets[] = ($result->student);	
+			}
+		}
+		return $targets;
 	}
 	
 	function read_form($form_id) {
@@ -191,5 +214,16 @@ class Forms_model extends CI_Model {
 			'date_created' => '2011-02-28',
 		);
 		$this->db->insert('form_templates', $sql_data);
+	}
+	
+	function randomString($length = 32, $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890') {
+	    $chars_length = (strlen($chars) - 1);
+	    $string = $chars{rand(0, $chars_length)};
+
+	    for ($i = 1; $i < $length; $i = strlen($string)) {
+	        $r = $chars{rand(0, $chars_length)};
+	        if ($r != $string{$i - 1}) $string .=  $r;
+	    }
+	    return $string;
 	}
 }
