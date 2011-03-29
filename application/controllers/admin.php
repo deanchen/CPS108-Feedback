@@ -5,6 +5,17 @@ class Admin extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		
+		if (isset($_SERVER['Shib-Session-ID'])) {
+			$email = explode('@', $_SERVER['eppn']);
+			$this->netid = $email[0];
+			if ($this->netid != 'rcd' and $this->netid != 'zc17') {
+				header('Location: ./');
+			}	
+		} else {
+			header('Location: ./');
+		}
+		
 		$this->load->library('session');
 		$this->load->model('forms_model');
 	}

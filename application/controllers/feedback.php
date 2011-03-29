@@ -8,6 +8,11 @@ class Feedback extends CI_Controller {
 		$this->load->library('session');
 		if ($this->session->userdata('netid')) {
 			$this->netid = $this->session->userdata('netid');
+		} else {
+			if (isset($_SERVER['Shib-Session-ID'])) {
+				$email = explode('@', $_SERVER['eppn']);
+				$this->netid = $email[0];	
+			}		
 		}
 		$this->load->model('forms_model');
 	}
