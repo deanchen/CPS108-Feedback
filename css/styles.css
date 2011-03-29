@@ -23,6 +23,7 @@ html, body {
 	display: block;
 	margin-top: 1.5em;
 	padding: 1.3em;
+	padding-top: 0.2em;
 }
 
 label {
